@@ -1,0 +1,41 @@
+DOMANDA 1)
+MATRICOLA = 189888 => i = 8
+i = i++ => "i" doesn't change and will have the same value after the expression is executed,
+because the incrementation of i (i++) takes place only after the assignment to "i".
+
+
+DOMANDA 2)
+
+i = 1
+
+Let's assume address of "s": 1000
+while (i < 7)
+1 < 7 -> true
+printf("%c", *((char *)((int *)s + i))); -> printf("%c", *((char *)(1000 + 1*4))); -> Prints character at address 1004;
+A - 1000, B - 1001, C - 1002, D - 1003, E - 1004; So it will print the character 'E'.
+i += f(i) ? f(i) : 1; -> i += 8 (true) ? 8 : 1; -> i+= 8; i = 9
+9 < 7 -> false
+the WHILE cicle ends.
+
+Result: The program printed the character 'E'.
+
+
+DOMANDA 3)
+
+Whenever a function call occurs in our program a stack frame gets created for said function.
+A stack frame is a memory location in the STACK that contains all the information about a function,
+such as: the function's parameters, local variables, return value (if it exists), and other subsequent function calls that our
+function contains.
+Each separate function gets its own stack frame (including the function main()). The stack frame is deallocated once a function ends its process.
+The deallocation of stack frames abides by the LIFO (Last IN first OUT) policy.
+Therefore, if we look at our example, when we run the program the function main() gets executed and a stack frame is created for it.
+We can also notice that the main function also has a subsequent function call inside it "f(3)". For the function main() to conclude it also
+requires that f(3) concludes in order to return a value.
+
+If we take a look at the function f and analyze it, we can also understand that the call of f(3) will include a subsequent call
+of f(2). In order for f(3) to conclude, f(2) needs to finish its execution first. In this case, just like I mentioned before, the execution of these
+calls will abide by the LIFO policy, therefore it will look like this: f(2) -> f(3) -> main().
+We notice that during the execution of the f(2) call there are 3 function calls that are running simultaneously: The f(2) - which is currently running,
+the f(3) - which awaits the conclusion of f(2) in order to conclude itself, and finally main() - which awaits the conclusion of f(3).
+
+In this program example, there are a maximum of 3 stack frames that exist simultaneously.

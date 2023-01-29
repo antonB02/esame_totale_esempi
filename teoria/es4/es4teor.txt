@@ -1,0 +1,62 @@
+DOMANDA 1)
+
+A stack frame contains the parameters, local variables, return value (if such exists) of a function and subsequent
+function calls inside the body of the function. The stack frame is a very useful tool because it allows us to create
+functions that we only write once but can implement multiple times in our code by calling the function.
+
+
+DOMANDA 2)
+
+MATRICOLA: 189888 => Lista: 1 8 9 8 8 8
+
+DO
+for (; l && l->dato; l = l->next) -> this FOR cicle iterates through our list
+a[1] = 1;
+a[8] = 8;
+a[9] = 9;
+a[8] = 8;
+a[8] = 8;
+a[8] = 8;
+FOR ends.
+a[] = {0, 1, 0, 0, 0, 0, 0, 0, 8, 9}
+DO ends.
+while (0) -> WHILE ends.
+
+for (i = 0; i < 10; i++)
+        printf("%d", a[i]);
+This will print our array "a".
+This will print: 0100000089
+
+DOMANDA 3)
+
+Both "struct" and "union" are user-defined (abstract) data types.
+They do have differences which make them useful in different situations.
+
+"struct" can contain multiple variables of different types.
+We use "struct" when we need to operate with records, so by using "struct"
+we define how a record looks like (what characteristics it has).
+
+For example:
+typedef struct {
+    char name[20];            In this example we define a record "Person".
+    int age;                  Each record of type "Person" will have a name (char*), 
+    float height;             age (int), height(float), weight(float).
+    float weight;
+}Person;
+
+"union" has the possibility to contain multiple variables in a single memory location.
+We use "union" when we are uncertain of what type a variable will be (will need to be)
+during the execution of a program. "union" is useful in this case, because instead of creating
+multiple variables and only using one of them we can use a variable of type "union" that can
+change its data type however we need it to during the execution of the program. 
+
+For example:
+typedef union {
+    int a;
+    float b;
+    char c;
+}Val;
+
+In this example "Val" can either be assigned a "int", "float" or "char" value at a specific moment in time.
+Creating this union is better than just creating these variables inside our program, because the size of this union
+is 4 bytes (the size of its biggest variable), whereas creating those variables inside our program would cost us 9 bytes.

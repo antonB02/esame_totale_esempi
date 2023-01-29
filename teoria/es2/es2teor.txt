@@ -1,0 +1,95 @@
+DOMANDA 1)
+
+Passing parameters by value means that, when a function is called, the objects will only have their value copied into the body of the function.
+The objects themselves cannot be changed from inside the function, the function only operates with their copied values.
+For example: Let's imagine we have the declaration of a function [f(int num);] that takes the value of a number and doubles it.
+
+f(int num) {
+    num *= 2;
+}
+
+Let's also imagine that inside the program (inside of 'main') we have the integer variable x = 5. If inside the program we call f(x),
+x will be passed as a parameter by value, in other words 'num' will copy the value of 'x' so 'num' is also equal to 5.
+Inside the function 'num' gets doubled but 'x' does not change.
+
+Passing by reference allows us to change the objects passed into the function from inside the function. In C we can only pass by value.
+In order to immitate passing by reference we use pointers. If we modify the last example then our function becomes like this:
+
+f(int *num) {
+    *num *= 2;
+}
+
+Therefore when we make the call f(&x) the function gets the address of 'x', copies it into 'num' so that 'num' acts as 'x', and then doubles
+the value that is contained at that address. Which means that effectively our function modifies the 'x' variable from the body of the function.
+
+
+DOMANDA 2)
+
+int a = 0, i[] = {1, 1, 1};
+    while (a < 2)
+        i[a] = f(++a);
+
+while (0 < 2) -> true
+i[1] = f(1) -> i[1] = 1
+while (1 < 2) -> true
+i[2] = f(2) -> i[2] = 8
+while (2 < 2) -> false
+The while cicle ends; a = 2; i[] = {1, 1, 8};
+
+for (i[0] = 2; i[0] >= 0; i[0]--)
+        printf("%d ", i[i[0]]);
+    printf("\n");
+
+i[0] = 2 >= 0 -> true
+printf("%d ", i[i[0]]); -> printf("%d ", i[2]); -> printf("%d ", 1); // PRINTS 8, i[0]--
+i[0] = 1 >= 0 -> true
+printf("%d ", i[i[0]]); -> printf("%d ", i[1]); -> printf("%d ", 8); // PRINTS 1, i[0]--
+i[0] = 0 >= 0 -> true
+printf("%d ", i[i[0]]); -> printf("%d ", i[0]); -> printf("%d ", 0); // PRINTS 0, i[0]--
+i[0] = -1 >= 0 -> false
+The FOR cicle ends;
+
+THE PROGRAM PRINTS: 8 1 0
+
+
+DOMANDA 3)
+
+"struct" and "union" are both user-defined (abstract) data types.
+
+"struct" can contain multiple data items of different data types.
+"struct" is used to represent a record.
+The size (in bytes) of a "struct" equals to the sum of the sizes of all the variables that comprise it.
+
+For example:
+typedef struct {
+    char name[20];
+    int age;
+    float height;
+    float weight;
+}Person;
+
+In this example we have created the object "Person" that has a name, age, height, weight. We can notice that these characteristics
+are stored in variables of different types. These characteristics of different data types comprise a "Person".
+The size of this "struct" is 20+4+4+4 = 32 bytes.
+
+
+"union", on the other hand, can be defined by different data types but only by one at a time.
+"union" allows storing different data types in the same memory location.
+The size(in bytes) of a "union" is equal to the biggest variable size it has.
+
+For example:
+typedef union {
+    int a;
+    float b;
+    char c;
+}Value;
+
+As we can see, in this example the union can be defined by either an integer, a float number or a character, but only one
+of them can hold a value at a specific moment in time.
+So if we have a = 5 then our union "Value" is defined by an integer that equals 5.
+But if we had b = 5.1 then our union would be defined by a variable of type "float" which equals 5.1. Note, that in a specific moment in time 
+only a, b or c can define our union.
+The size of this union is 4 bytes.
+
+To sumarize, it is useful to implement "struct" when we have to define and store a record. A "union", on the other hand, is useful
+when we are uncertain of which data type our value will be during the execution of the program.

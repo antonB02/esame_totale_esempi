@@ -1,0 +1,61 @@
+DOMANDA 1)
+An array is a collection of items of the same data type.
+An array points to an adress which is the adress of the first element in that array.
+Because the elements of an array are indexed they have adresses adjacent to eachother.
+We can easily perform operations on specific elements of that array simply by using their index.
+
+For example:
+Let's say we have an array called "arr" of type "int" which contains a maximum of 5 elements (excluding the terminator).
+Let's also say this array points at the adress 1000.
+arr[0] is the notation for the first element of the array "arr", this element has index 0.
+
+It can also be written as *(arr + 0). -> arr + 0 equals to 1000 + 0 = 1000 which is the adress of the first element.
+Then we get its value using the "*" operator which gets the value stored at a certain adress.
+We can notice that 0 is the index of the first element. Therefore 1 is the index of the second element and so on.
+Note that arr + 1 = 1004, because sum operations for adresses are defined like this: adress + i * sizeof(_ourDataType_)
+So in our case the data type being integer it means that the adress of the 5th element of the array would be:
+1000 + 5 * 4 = 1020.
+
+To read an element we can use the function scanf: scanf("%d", &arr[2])  //This example reads the 3rd element of the array. The element at adress 1008.
+To print an element we can use the function printf: printf("%d", arr[4]) //This example prints the 5th element of the array.
+
+
+DOMANDA 2)
+i = 8;
+while (!f(--i)) -> while(!f(7)) -> while (!0) -> while(true)
+while (!f(--i)) -> while(!f(6)) -> while (!8) -> while(false)
+the first while cicle closes
+
+
+do
+printf("%c", '0' + f(i--)); -> printf("%c", '0' + f(6)); -> printf("%c", '0' + 8); -> prints '8';
+while(f(i))
+(f(5) != 0)  printf("%c", '0' + f(i--)); -> printf("%c", '0' + f(5)); -> printf("%c", '0' + 8); -> prints '8'; 
+(f(4) != 0)  printf("%c", '0' + f(i--)); -> printf("%c", '0' + f(4)); -> printf("%c", '0' + 8); -> prints '8'; 
+(f(3) != 0)  printf("%c", '0' + f(i--)); -> printf("%c", '0' + f(3)); -> printf("%c", '0' + 9); -> prints '9'; 
+(f(2) != 0)  printf("%c", '0' + f(i--)); -> printf("%c", '0' + f(2)); -> printf("%c", '0' + 8); -> prints '8';
+(f(1) != 0)  printf("%c", '0' + f(i--)); -> printf("%c", '0' + f(1)); -> printf("%c", '0' + 1); -> prints '1';
+(f(0) == 0)  THE CICLE STOPS;
+
+RESULT: The program prints "888981";
+
+
+DOMANDA 3)
+
+The value of the expression is the character 'n'.
+
+If we look at the program, the pointer "p" copies the adress of the string "s", but typecasted as a (int*).
+We know that strings are essentially an array of characters.
+If we imagine that the string "s" points at the adress 1000 then p points at adress 1000 as well.
+
+p++; <- This increments the adress of p, which results in: 1000 + 1 * 4 = 1004;
+q = (char*)p; <- q copies the adress of p being typecasted as (char*)
+In the end the function returns the character located at adress 1004.
+
+So if we make the call f("milano") and assume this string points at the adress 1000 for its first element, then:
+1000 - m
+1001 - i
+1002 - l
+1003 - a
+1004 - n --> 'n' Is the element (a character) located at the address 1004.
+1005 - o
